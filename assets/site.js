@@ -1,13 +1,43 @@
 // Archives de la Force - Axis Community
 (function () {
   // menu mobile
-  var toggle = document.querySelector(".nav-toggle");
-  var nav = document.querySelector(".nav");
+  var toggle = document.querySelector(".burger");
+  var nav = document.querySelector(".tabs");
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
+  }
+
+  // catalogue des poignees : rarete + recherche
+  var hgrid = document.getElementById("hilts");
+  if (hgrid) {
+    var hcards = Array.prototype.slice.call(hgrid.children);
+    var hs = { cat: "toutes", q: "" };
+    var hcount = document.getElementById("hilts-count");
+    var hsearch = document.getElementById("hilts-search");
+    var hnorm = function (s) { return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); };
+    var happly = function () {
+      var q = hnorm(hs.q), k = 0;
+      hcards.forEach(function (c) {
+        var ok = (hs.cat === "toutes" || c.getAttribute("data-cat") === hs.cat) && (!q || hnorm(c.textContent).indexOf(q) !== -1);
+        c.classList.toggle("hidden", !ok);
+        if (ok) k++;
+      });
+      if (hcount) hcount.textContent = k + (k > 1 ? " poignées" : " poignée");
+    };
+    var hbtns = document.querySelectorAll("[data-hfilter]");
+    hbtns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        hbtns.forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+        hs.cat = b.getAttribute("data-value");
+        happly();
+      });
+    });
+    if (hsearch) hsearch.addEventListener("input", function () { hs.q = hsearch.value; happly(); });
+    happly();
   }
 
   // filtres de la page des pouvoirs

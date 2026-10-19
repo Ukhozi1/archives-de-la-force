@@ -348,3 +348,22 @@ body.bg-neu::before { background: linear-gradient(rgba(2, 7, 12, .86), rgba(2, 7
 .code { margin: 4px 0 18px; padding: 16px 22px; border-left: 3px solid var(--c); background: rgba(0, 0, 0, .35); text-align: center; }
 .code p { margin: 4px 0; font: 21px/1.35 var(--title); color: #fff; letter-spacing: .01em; }
 @media (max-width: 560px) { .code p { font-size: 17px; } }
+
+/* ---------- catalogue des poignees ---------- */
+.hilts { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 6px; }
+.hilt {
+  --rc: #96afc3;
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 8px 6px 9px; min-width: 0;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--rc) 22%, transparent), rgba(0, 0, 0, .35) 70%);
+  border: 1px solid color-mix(in srgb, var(--rc) 40%, transparent); border-top: 2px solid var(--rc);
+}
+.hilt img, .hilt .noimg { width: 64px; height: 64px; image-rendering: auto; }
+.hilt .noimg { display: block; background: rgba(0, 0, 0, .3); }
+.hilt b { font: 14px/1.2 var(--ui); letter-spacing: .02em; color: #fff; font-weight: normal; margin-top: 6px; overflow-wrap: anywhere; }
+.hilt span { font: 11.5px var(--ui); letter-spacing: .1em; text-transform: uppercase; color: var(--rc); margin-top: 3px; }
+.hilt.r-common { --rc: #96afc3; }
+.hilt.r-classic { --rc: #3fc1f0; }
+.hilt.r-staff { --rc: #af73ff; }
+.hilt.r-legend { --rc: #f0be3c; }
+@media (max-width: 480px) { .hilts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
