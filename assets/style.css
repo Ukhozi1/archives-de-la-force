@@ -21,8 +21,9 @@
   --hp: #c8392f;
   --fp: #2f8fe0;
   --c: var(--holo);           /* couleur des coins de cadre, change selon la faction */
-  --title: "Old Republic", "Times New Roman", serif;
-  --ui: "Aero Matics", "Segoe UI", "Arial Narrow", sans-serif;
+  /* System fonts render French accents reliably across browsers and platforms. */
+  --title: "Trebuchet MS", "Segoe UI", sans-serif;
+  --ui: "Segoe UI", "Arial Narrow", sans-serif;
   --body: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 body.f-jedi { --c: var(--jedi); --holo-dim: rgba(79, 180, 255, .28); --holo-faint: rgba(79, 180, 255, .10); }
